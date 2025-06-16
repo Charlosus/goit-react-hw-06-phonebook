@@ -7,6 +7,7 @@ import {
   FLUSH,
   REHYDRATE,
   PAUSE,
+  PERSIST,
   PURGE,
   REGISTER,
 } from 'redux-persist';
@@ -15,7 +16,7 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  constacts: contactsReducer,
+  contacts: contactsReducer,
   filter: filterReducer,
 });
 
