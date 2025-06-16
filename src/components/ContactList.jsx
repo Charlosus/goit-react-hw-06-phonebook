@@ -1,9 +1,20 @@
-export const ContactList = ({
-  contacts = [],
-  filter = '',
-  onFilterChange,
-  onDelete,
-}) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { deleteContact } from '../redux/contactsSlice';
+
+export const ContactList = () => {
+  const contacts = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+  const [filter, setFilter] = useState('');
+
+  const handleFilterChange = ({ target }) => setFilter(target.value);
+
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  const handleDelete = id => dispatch(deleteContact(id));
+
   return (
     <div>
       <label>
@@ -12,14 +23,14 @@ export const ContactList = ({
           type="text"
           placeholder="Search by name"
           value={filter}
-          onChange={onFilterChange}
+          onChange={handleFilterChange}
         />
       </label>
       <ul>
-        {contacts.map(contact => (
+        {filteredContacts.map(contact => (
           <li key={contact.id}>
             {contact.name}: {contact.number}{' '}
-            <button onClick={() => onDelete(contact.id)}>Delete</button>
+            <button onClick={() => handleDelete(contact.id)}>Delete</button>
           </li>
         ))}
       </ul>

@@ -1,14 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { Section } from './Section';
 import { PhonebookInput } from './PhonebookInput';
-import { nanoid } from 'nanoid';
 import { ContactList } from './ContactList';
-import { addContact, deleteContact } from '../redux/contactsSlice';
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-
   const handleDelete = () => dispatch(deleteContact(contact.id));
 
   const handleFilterChange = evt => {};

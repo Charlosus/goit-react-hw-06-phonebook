@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, nan } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContact } from '../redux/contactsSlice';
 
 export const PhonebookInput = () => {
